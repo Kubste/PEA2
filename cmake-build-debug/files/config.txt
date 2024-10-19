@@ -1,0 +1,8 @@
+Ścieżka pliku wejściowego# data10.txt
+Ścieżak pliku wyjściowego# results.csv
+Wybrana metoda 1 - DFS 2 - BFS 3 - low cost# 1
+Maksymalny czas przeszukiwania dla metody DFS(-1 -> brak ograniczenia)# 3
+Maksymalny czas przeszukiwania dla metody BFS(-1 -> brak ograniczenia)# 3
+Maksymalny czas przeszukiwania dla metody low cost(-1 -> brak ograniczenia)# 3
+Liczba powtorzeń przeszukiwania instancji# 10
+Wyświetlanie wskaźnika postępu 0 - wyłączone 1 - włączone# 0

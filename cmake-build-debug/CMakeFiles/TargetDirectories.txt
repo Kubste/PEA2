@@ -1,0 +1,3 @@
+C:/Users/jakub/OneDrive/Pulpit/PEAProjekt2/cmake-build-debug/CMakeFiles/PEAProjekt2.dir
+C:/Users/jakub/OneDrive/Pulpit/PEAProjekt2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/jakub/OneDrive/Pulpit/PEAProjekt2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
