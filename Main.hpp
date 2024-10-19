@@ -34,6 +34,7 @@ private:
 
     void assign_parameters(pair<vector<string>, vector<int>> parameters);
     void print_info();
+    void print_partial_info(pair<vector<int>, int> results, int repetition);
 
 };
 

@@ -17,8 +17,11 @@ void Main::run() {
 
     if(progress_indicator == 0) print_info();
 
+    tsp.set_matrix(matrix);
     for(int i = 0; i < repetitions; i++) {
-        cout << "Przeszukiwanie" << endl;
+        if(method == 1) results = tsp.start_DFS();
+
+        print_partial_info(results, i + 1);
     }
 
     if(progress_indicator) print_info();
@@ -54,6 +57,16 @@ void Main::print_info() {
     else if(method == 2) cout << "Brak ograniczenia czasowego" << endl;
     else if(method == 3 && minutesL != INT_MAX) cout << "Maksymalny czas przeszukania: " << minutesL << " min" << endl;
     else if(method == 3) cout << "Brak ograniczenia czasowego" << endl;
+    cout << endl;
+}
+
+void Main::print_partial_info(pair<vector<int>, int> results, int repetition) {
+
+    cout << "Wykonano " << repetition << " przeszukanie" << endl;
+    cout << "Otrzymana najkrotsza sciezka: ";
+    for(int i = 0; i < results.first.size() - 1; i++) cout << results.first[i] << " -> ";
+    cout << results.first.back() << endl;
+    cout << "Dlugosc otrzymanej sciezki: " << results.second << endl;
     cout << endl;
 }
 
