@@ -77,6 +77,7 @@ build CMakeFiles/PEAProjekt2.dir/Main.cpp.obj: CXX_COMPILER__PEAProjekt2_unscann
 
 build PEAProjekt2.exe: CXX_EXECUTABLE_LINKER__PEAProjekt2_Debug CMakeFiles/PEAProjekt2.dir/TSP.cpp.obj CMakeFiles/PEAProjekt2.dir/File_manager.cpp.obj CMakeFiles/PEAProjekt2.dir/Main.cpp.obj
   FLAGS = -g
+  LINK_FLAGS = -static -static-libgcc -static-libstdc++
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PEAProjekt2.dir
   POST_BUILD = cd .

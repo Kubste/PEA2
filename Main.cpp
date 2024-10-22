@@ -1,6 +1,5 @@
 #include "Main.hpp"
 #include <iostream>
-#include <filesystem>
 
 using namespace std;
 
@@ -20,6 +19,7 @@ void Main::run() {
     tsp.set_matrix(matrix);
     for(int i = 0; i < repetitions; i++) {
         if(method == 1) results = tsp.start_DFS();
+        else if(method == 2) results = tsp.start_BFS();
 
         print_partial_info(results, i + 1);
     }
@@ -71,7 +71,6 @@ void Main::print_partial_info(pair<vector<int>, int> results, int repetition) {
 }
 
 int main() {
-    cout << "Current working directory: " << filesystem::current_path() << endl;
     Main main_obj{};
     main_obj.run();
     system("pause");

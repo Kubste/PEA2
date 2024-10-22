@@ -10,3 +10,6 @@ add_executable(PEAProjekt2
         File_manager.cpp
         Main.hpp
         Main.cpp)
+
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++")
+set(CMAKE_EXE_LINKER_FLAGS "-static -static-libgcc -static-libstdc++")

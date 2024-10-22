@@ -15,20 +15,18 @@ pair<vector<int>, int> TSP::start_DFS() {
 }
 
 void TSP::DFS(int startV) {
-    stack<tuple<int, int, set<int>, vector<int>>> stack; // {currentV, path_length, visitedV, path}
-    set<int> visitedV;
+    stack<tuple<int, int, vector<int>>> stack; // {currentV, path_length, path}
     vector<int> path;
 
-    stack.emplace(startV, 0, visitedV, path);
+    stack.emplace(startV, 0, path);
 
     while(!stack.empty()) {
-        auto[currentV, path_length, visited, currentPath] = stack.top();
+        auto[currentV, path_length, currentPath] = stack.top();
         stack.pop();
 
-        visited.insert(currentV);
         currentPath.push_back(currentV);
 
-        if(visited.size() == matrix.size()) {
+        if(currentPath.size() == matrix.size()) {
             if(matrix[currentV][startV] != -1) {
                 path_length = path_length + matrix[currentV][startV];
                 if(path_length < results.second) {
@@ -39,9 +37,49 @@ void TSP::DFS(int startV) {
             }
         } else{
             for(int i = 0; i < matrix.size(); i++) {
-                if(matrix[currentV][i] != -1 && visited.find(i) == visited.end()) {
-                    if(path_length + matrix[currentV][i] + matrix.size() - visited.size() + 1 < results.second)
-                        stack.emplace(i, path_length + matrix[currentV][i], visited, currentPath);
+                if(matrix[currentV][i] != -1 && find(currentPath.begin(), currentPath.end(), i) == currentPath.end()) {
+                    if(path_length + matrix[currentV][i] + matrix.size() - currentPath.size() + 1 < results.second)
+                        stack.emplace(i, path_length + matrix[currentV][i], currentPath);
+                }
+            }
+        }
+    }
+}
+
+pair<vector<int>, int> TSP::start_BFS() {
+
+    results.second = INT_MAX;
+    for(int i = 0; i < matrix.size(); i++) BFS(i);
+
+    return results;
+}
+
+void TSP::BFS(int startV) {
+    queue<tuple<int, int, vector<int>>> queue; // {currentV, path_length, path}
+    vector<int> path;
+
+    queue.emplace(startV, 0, path);
+
+    while(!queue.empty()) {
+        auto[currentV, path_length, currentPath] = queue.front();
+        queue.pop();
+
+        currentPath.push_back(currentV);
+
+        if(currentPath.size() == matrix.size()) {
+            if(matrix[currentV][startV] != -1) {
+                path_length = path_length + matrix[currentV][startV];
+                if(path_length < results.second) {
+                    currentPath.push_back(startV);
+                    results.first = currentPath;
+                    results.second = path_length;
+                }
+            }
+        } else{
+            for(int i = 0; i < matrix.size(); i++) {
+                if(matrix[currentV][i] != -1 && find(currentPath.begin(), currentPath.end(), i) == currentPath.end()) {
+                    if(path_length + matrix[currentV][i] + matrix.size() - currentPath.size() + 1 < results.second)
+                        queue.emplace(i, path_length + matrix[currentV][i], currentPath);
                 }
             }
         }
