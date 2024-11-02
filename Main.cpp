@@ -20,6 +20,7 @@ void Main::run() {
     for(int i = 0; i < repetitions; i++) {
         if(method == 1) results = tsp.start_DFS();
         else if(method == 2) results = tsp.start_BFS();
+        else if(method == 3) results = tsp.start_LC();
 
         print_partial_info(results, i + 1);
     }
