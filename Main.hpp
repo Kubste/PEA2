@@ -34,7 +34,9 @@ private:
 
     void assign_parameters(pair<vector<string>, vector<int>> parameters);
     void print_info();
-    void print_partial_info(pair<vector<int>, int> results, int repetition);
+    void print_partial_results(pair<vector<int>, int> results, int repetition, chrono::duration<double, micro> time);
+    int calculate_path_length(vector<int> path);
+    void print_total_results();
 
 };
 

@@ -1,7 +1,5 @@
 #include "TSP.hpp"
 
-#include <utility>
-
 void TSP::set_matrix(vector<vector<int>> matrix) {
     this -> matrix = std::move(matrix);
     set_min_val();
@@ -13,22 +11,23 @@ void TSP::set_min_val() {
     }
 }
 
-pair<vector<int>, int> TSP::start_DFS() {
+pair<vector<int>, int> TSP::start_DFS(int minutes) {
+    auto start = chrono::steady_clock::now();
 
     results.second = INT_MAX;
     results = NN();
-    for(int i = 0; i < matrix.size(); i++) DFS(i);
+    DFS(0, minutes, start);
 
     return results;
 }
 
-void TSP::DFS(int startV) {
+void TSP::DFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> start) {
     stack<tuple<int, int, vector<int>>> stack; // {currentV, path_length, path}
     vector<int> path;
 
     stack.emplace(startV, 0, path);
 
-    while(!stack.empty()) {
+    while(!stack.empty() && chrono::duration_cast<chrono::minutes>(chrono::steady_clock::now() - start).count() < minutes) {
         auto[currentV, path_length, currentPath] = stack.top();
         stack.pop();
 
@@ -54,22 +53,23 @@ void TSP::DFS(int startV) {
     }
 }
 
-pair<vector<int>, int> TSP::start_BFS() {
+pair<vector<int>, int> TSP::start_BFS(int minutes) {
+    auto start = chrono::steady_clock::now();
 
     results.second = INT_MAX;
     results = NN();
-    for(int i = 0; i < matrix.size(); i++) BFS(i);
+    BFS(0, minutes, start);
 
     return results;
 }
 
-void TSP::BFS(int startV) {
+void TSP::BFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> start) {
     queue<tuple<int, int, vector<int>>> queue; // {currentV, path_length, path}
     vector<int> path;
 
     queue.emplace(startV, 0, path);
 
-    while(!queue.empty()) {
+    while(!queue.empty() && chrono::duration_cast<chrono::minutes>(chrono::steady_clock::now() - start).count() < minutes) {
         auto[currentV, path_length, current_path] = queue.front();
         queue.pop();
 
@@ -95,43 +95,42 @@ void TSP::BFS(int startV) {
     }
 }
 
-pair<vector<int>, int> TSP::start_LC() {
+pair<vector<int>, int> TSP::start_LC(int minutes) {
+    auto start = chrono::steady_clock::now();
 
-    results.second = INT_MAX;
-    for(int i = 0; i < matrix.size(); i++) {
-        LC(i);
-    }
+    results = NN();
+    LC(0, minutes, start);
 
     return results;
 }
 
-void TSP::LC(int startV) {
+void TSP::LC(int startV, int minutes, chrono::time_point<chrono::steady_clock> start) {
     priority_queue<tuple<int, int, vector<int>>, vector<tuple<int, int, vector<int>>>, greater<>> priority_queue; // { path_length, currentV, path}
     vector<int> path;
 
     priority_queue.emplace(0, startV, path);
 
-    while(true) {
+    while(!priority_queue.empty() && chrono::duration_cast<chrono::minutes>(chrono::steady_clock::now() - start).count() < minutes) {
         auto [path_length, currentV, current_path] = priority_queue.top();
         priority_queue.pop();
 
         current_path.push_back(currentV);
 
         if(current_path.size() == matrix.size()) {
-            if (matrix[currentV][startV] != -1) {
+            if(matrix[currentV][startV] != -1) {
                 path_length = path_length + matrix[currentV][startV];
-                if (path_length < results.second) {
+                if(path_length < results.second) {
                     current_path.push_back(startV);
                     results.first = current_path;
                     results.second = path_length;
                 }
-                break;
             }
+            continue;
         }
 
         for(int i = 0; i < matrix[currentV].size(); i++) {
-            if (matrix[currentV][i] != -1 && find(current_path.begin(), current_path.end(), i) == current_path.end()) {
-                priority_queue.emplace( path_length + matrix[currentV][i], i, current_path);
+            if(matrix[currentV][i] != -1 && find(current_path.begin(), current_path.end(), i) == current_path.end()) {
+                priority_queue.emplace(path_length + matrix[currentV][i], i, current_path);
             }
         }
     }
