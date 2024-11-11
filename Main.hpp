@@ -4,6 +4,8 @@
 #include "TSP.hpp"
 #include <string>
 #include <climits>
+#include <iomanip>
+#include <thread>
 
 using namespace std;
 

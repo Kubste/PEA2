@@ -104,7 +104,7 @@ double File_manager::haversine(double lat1, double lon1, double lat2, double lon
 void File_manager::write_to_file(const string& data_name, const std::string& results_name, int optimal_value, vector<chrono::duration<double, micro>> total_times,
                                  chrono::duration<double, micro> time, float absolute_error, float relative_error) {
 
-    ofstream file(results_name);
+    ofstream file(results_name, ios::trunc);
 
     file << "Nazwa instancji," << data_name << "\n";
     file << "Wynik optymalny," << optimal_value << "\n";

@@ -51,19 +51,19 @@ build cmake_object_order_depends_target_PEAProjekt2: phony || CMakeFiles/PEAProj
 
 build CMakeFiles/PEAProjekt2.dir/TSP.cpp.obj: CXX_COMPILER__PEAProjekt2_unscanned_Debug C$:/Users/jakub/OneDrive/Pulpit/PEAProjekt2/TSP.cpp || cmake_object_order_depends_target_PEAProjekt2
   DEP_FILE = CMakeFiles\PEAProjekt2.dir\TSP.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O0 -std=c++11 -O0 -std=c++11 -g -std=c++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\PEAProjekt2.dir
   OBJECT_FILE_DIR = CMakeFiles\PEAProjekt2.dir
 
 build CMakeFiles/PEAProjekt2.dir/File_manager.cpp.obj: CXX_COMPILER__PEAProjekt2_unscanned_Debug C$:/Users/jakub/OneDrive/Pulpit/PEAProjekt2/File_manager.cpp || cmake_object_order_depends_target_PEAProjekt2
   DEP_FILE = CMakeFiles\PEAProjekt2.dir\File_manager.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O0 -std=c++11 -O0 -std=c++11 -g -std=c++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\PEAProjekt2.dir
   OBJECT_FILE_DIR = CMakeFiles\PEAProjekt2.dir
 
 build CMakeFiles/PEAProjekt2.dir/Main.cpp.obj: CXX_COMPILER__PEAProjekt2_unscanned_Debug C$:/Users/jakub/OneDrive/Pulpit/PEAProjekt2/Main.cpp || cmake_object_order_depends_target_PEAProjekt2
   DEP_FILE = CMakeFiles\PEAProjekt2.dir\Main.cpp.obj.d
-  FLAGS = -g -fdiagnostics-color=always
+  FLAGS = -O0 -std=c++11 -O0 -std=c++11 -g -std=c++17 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\PEAProjekt2.dir
   OBJECT_FILE_DIR = CMakeFiles\PEAProjekt2.dir
 
@@ -76,7 +76,7 @@ build CMakeFiles/PEAProjekt2.dir/Main.cpp.obj: CXX_COMPILER__PEAProjekt2_unscann
 # Link the executable PEAProjekt2.exe
 
 build PEAProjekt2.exe: CXX_EXECUTABLE_LINKER__PEAProjekt2_Debug CMakeFiles/PEAProjekt2.dir/TSP.cpp.obj CMakeFiles/PEAProjekt2.dir/File_manager.cpp.obj CMakeFiles/PEAProjekt2.dir/Main.cpp.obj
-  FLAGS = -g
+  FLAGS = -O0 -std=c++11 -O0 -std=c++11 -g
   LINK_FLAGS = -static -static-libgcc -static-libstdc++
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PEAProjekt2.dir

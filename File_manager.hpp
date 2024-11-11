@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <chrono>
+#define _USE_MATH_DEFINES
 #include <cmath>
 
 using namespace std;

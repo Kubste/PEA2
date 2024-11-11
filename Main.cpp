@@ -8,7 +8,7 @@ void Main::run() {
     vector<chrono::duration<double, micro>> times;
     pair<vector<vector<int>>, int> data;
     chrono::duration<double, micro> time{};
-    chrono::high_resolution_clock::time_point t0, t1;
+    chrono::high_resolution_clock::time_point t0;
 
     assign_parameters(file_manager.read_config_file(config_path));
     data = file_manager.read_data_file(data_path);
@@ -23,8 +23,7 @@ void Main::run() {
         if(method == 1) results = tsp.start_DFS(minutesD);
         else if(method == 2) results = tsp.start_BFS(minutesB);
         else if(method == 3) results = tsp.start_LC(minutesL);
-        t1 = chrono::high_resolution_clock::now();
-        time = chrono::duration_cast<chrono::microseconds>(t1 - t0);
+        time = chrono::duration_cast<chrono::microseconds>(chrono::high_resolution_clock::now() - t0);
 
         print_partial_results(results, i + 1, time);
     }
@@ -78,7 +77,13 @@ void Main::print_partial_results(pair<vector<int>, int> results, int repetition,
     cout << results.first.back() << endl;
     cout << "Dlugosc otrzymanej sciezki: " << results.second << endl;
 
-    cout << "Czas rozwiazania: " << repetition << ": " << time.count() << " micro" << endl;
+    cout << "Czas rozwiazania: " << repetition << ": ";
+    cout << fixed << setprecision(3);
+    if(time.count() >= 180000000) cout << chrono::duration<double, ratio<60>>(time).count() << " min" << endl;
+    else if(time.count() >= 1000000) cout << chrono::duration<double>(time).count() << " s" << endl;
+    else if(time.count() >= 1000) cout << chrono::duration<double, milli>(time).count() << " ms" << endl;
+    else cout << time.count() << " micro" << endl;
+    cout.unsetf(ios::fixed);
     total_time = total_time + time;
     total_times.emplace_back(time);
     if(time.count() != 0) time_measurements++;
@@ -97,7 +102,13 @@ void Main::print_partial_results(pair<vector<int>, int> results, int repetition,
 void Main::print_total_results() {
 
     cout << endl << "Wykonano " << repetitions << " powtorzen" << endl;
-    cout << "Sredni czas wyznaczenia rozwiazania: " << total_time.count() / time_measurements << " micro" << endl;
+    cout << fixed << setprecision(3);
+    cout << "Sredni czas wyznaczenia rozwiazania: ";
+    if(total_time.count() / time_measurements >= 180000000) cout << chrono::duration<double, ratio<60>>(total_time).count() << " min" << endl;
+    else if(total_time.count() / time_measurements >= 1000000) cout << chrono::duration<double>(total_time).count() / time_measurements << " s" << endl;
+    else if(total_time.count() / time_measurements >= 1000) cout << chrono::duration<double, milli>(total_time).count() / time_measurements << " ms" << endl;
+    else cout << total_time.count() / time_measurements << " micro" << endl;
+    cout.unsetf(ios::fixed);
     cout << "Sredni blad bezwzgledny: " << total_absolute_error / repetitions << endl;
     cout << "Sredni blad wzgledny: " << total_relative_error / repetitions << " = " << (total_relative_error / repetitions) * 100 << "% " << endl;
 
