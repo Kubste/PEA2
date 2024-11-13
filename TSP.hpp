@@ -21,9 +21,9 @@ class TSP {
         void set_matrix(vector<vector<int>> matrix);
         pair<vector<int>, int> NN();
         void explore_paths(vector<int> path, int path_length, vector<int> Q, int current_node, int start_node, pair<vector<int>, int> &resultsNN);
-        pair<vector<int>, int> start_DFS(int minutes);
-        pair<vector<int>, int> start_BFS(int minutes);
-        pair<vector<int>, int> start_LC(int minutes);
+        pair<vector<int>, int> start_DFS(int minutes, int upper_bound);
+        pair<vector<int>, int> start_BFS(int minutes, int upper_bound);
+        pair<vector<int>, int> start_LC(int minutes, int upper_bound);
 
     private:
         vector<vector<int>> matrix;

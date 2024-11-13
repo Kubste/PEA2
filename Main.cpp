@@ -20,9 +20,9 @@ void Main::run() {
     tsp.set_matrix(matrix);
     for(int i = 0; i < repetitions; i++) {
         t0 = chrono::high_resolution_clock::now();
-        if(method == 1) results = tsp.start_DFS(minutesD);
-        else if(method == 2) results = tsp.start_BFS(minutesB);
-        else if(method == 3) results = tsp.start_LC(minutesL);
+        if(method == 1) results = tsp.start_DFS(minutesD, upper_bound);
+        else if(method == 2) results = tsp.start_BFS(minutesB, upper_bound);
+        else if(method == 3) results = tsp.start_LC(minutesL, upper_bound);
         time = chrono::duration_cast<chrono::microseconds>(chrono::high_resolution_clock::now() - t0);
 
         print_partial_results(results, i + 1, time);
@@ -44,8 +44,9 @@ void Main::assign_parameters(pair<vector<std::string>, vector<int>> parameters) 
     else minutesB = parameters.second[2];
     if(parameters.second[3] == -1) minutesL = INT_MAX;
     else minutesL = parameters.second[3];
-    repetitions = parameters.second[4];
-    progress_indicator = parameters.second[5];
+    upper_bound = parameters.second[4];
+    repetitions = parameters.second[5];
+    progress_indicator = parameters.second[6];
 }
 
 void Main::print_info() {

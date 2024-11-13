@@ -11,12 +11,11 @@ void TSP::set_min_val() {
     }
 }
 
-pair<vector<int>, int> TSP::start_DFS(int minutes) {
-    auto start = chrono::steady_clock::now();
+pair<vector<int>, int> TSP::start_DFS(int minutes, int upper_bound) {
 
     results.second = INT_MAX;
-    results = NN();
-    DFS(0, minutes, start);
+    if(upper_bound) results = NN();
+    DFS(0, minutes, chrono::steady_clock::now());
 
     return results;
 }
@@ -53,12 +52,11 @@ void TSP::DFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> 
     }
 }
 
-pair<vector<int>, int> TSP::start_BFS(int minutes) {
-    auto start = chrono::steady_clock::now();
+pair<vector<int>, int> TSP::start_BFS(int minutes, int upper_bound) {
 
     results.second = INT_MAX;
-    results = NN();
-    BFS(0, minutes, start);
+    if(upper_bound) results = NN();
+    BFS(0, minutes, chrono::steady_clock::now());
 
     return results;
 }
@@ -95,11 +93,11 @@ void TSP::BFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> 
     }
 }
 
-pair<vector<int>, int> TSP::start_LC(int minutes) {
-    auto start = chrono::steady_clock::now();
+pair<vector<int>, int> TSP::start_LC(int minutes, int upper_bound) {
 
-    results = NN();
-    LC(0, minutes, start);
+    results.second = INT_MAX;
+    if(upper_bound) results = NN();
+    LC(0, minutes, chrono::steady_clock::now());
 
     return results;
 }
@@ -130,6 +128,7 @@ void TSP::LC(int startV, int minutes, chrono::time_point<chrono::steady_clock> s
 
         for(int i = 0; i < matrix[currentV].size(); i++) {
             if(matrix[currentV][i] != -1 && find(current_path.begin(), current_path.end(), i) == current_path.end()) {
+                if(path_length + matrix[currentV][i] + (matrix.size() - current_path.size() - 1) * min_value < results.second)
                 priority_queue.emplace(path_length + matrix[currentV][i], i, current_path);
             }
         }

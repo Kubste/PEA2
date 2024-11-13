@@ -22,6 +22,7 @@ private:
     int minutesD;
     int minutesB;
     int minutesL;
+    int upper_bound;
     int optimal_value;
     int progress_indicator;
     int repetitions;
