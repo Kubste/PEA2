@@ -33,7 +33,7 @@ class TSP {
         void DFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> start);
         void BFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> start);
         void LC(int startV, int minutes, chrono::time_point<chrono::steady_clock> start);
-        void set_min_val();
+        void set_min_value();
 
 };
 

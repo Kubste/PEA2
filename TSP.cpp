@@ -2,10 +2,10 @@
 
 void TSP::set_matrix(vector<vector<int>> matrix) {
     this -> matrix = std::move(matrix);
-    set_min_val();
+    set_min_value();
 }
 
-void TSP::set_min_val() {
+void TSP::set_min_value() {
     for(int i = 0; i < matrix.size(); i++) {
         for(int j = 0; j < matrix[i].size(); j++) if(matrix[i][j] < min_value && matrix[i][j] >= 0) min_value = matrix[i][j];
     }
@@ -41,7 +41,7 @@ void TSP::DFS(int startV, int minutes, chrono::time_point<chrono::steady_clock> 
                     results.second = path_length;
                 }
             }
-        } else{
+        } else {
             for(int i = 0; i < matrix.size(); i++) {
                 if(matrix[currentV][i] != -1 && find(currentPath.begin(), currentPath.end(), i) == currentPath.end()) {
                     if(path_length + matrix[currentV][i] + (matrix.size() - currentPath.size() - 1) * min_value < results.second)

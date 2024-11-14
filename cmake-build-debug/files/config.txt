@@ -1,4 +1,4 @@
-Ścieżka pliku wejściowego# data12.txt
+Ścieżka pliku wejściowego# data29.txt
 Ścieżak pliku wyjściowego# results.csv
 Wybrana metoda 1 - DFS 2 - BFS 3 - low cost# 1
 Maksymalny czas przeszukiwania dla metody DFS(-1 -> brak ograniczenia)# 10
