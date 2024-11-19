@@ -1,17 +1,17 @@
-Nazwa instancji,data17a.txt
-Wynik optymalny,100
-Sredni czas wykonania,2.49219e+06
-Sredni blad bezwzgledny,-23
-Sredni blad wzgledny,-0.23
-Sredni blad wzgledny(w procentach),-23%
+Nazwa instancji,data10a.txt
+Wynik optymalny,270
+Sredni czas wykonania,5609.1
+Sredni blad bezwzgledny,0
+Sredni blad wzgledny,0
+Sredni blad wzgledny(w procentach),0%
 Numer proby,Czas wykonania
-1,2.5932e+06
-2,2.50413e+06
-3,2.5063e+06
-4,2.47063e+06
-5,2.47431e+06
-6,2.47635e+06
-7,2.47302e+06
-8,2.47433e+06
-9,2.47544e+06
-10,2.47416e+06
+1,5593
+2,5649
+3,5591
+4,5610
+5,5611
+6,5604
+7,5783
+8,5625
+9,5521
+10,5504

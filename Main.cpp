@@ -18,6 +18,9 @@ void Main::run() {
     if(progress_indicator == 0) print_info();
 
     tsp.set_matrix(matrix);
+
+    cout << "Zakonczono przygotowywanie" << endl;
+    system("pause");
     for(int i = 0; i < repetitions; i++) {
         t0 = chrono::high_resolution_clock::now();
         if(method == 1) results = tsp.start_DFS(minutesD, upper_bound);
